@@ -1,0 +1,15 @@
+2019-11-20 17:36:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CITIES" not found; SQL statement:
+SELECT * FROM cities [42102-199]
+2019-11-20 17:47:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CITIES" not found; SQL statement:
+SELECT * FROM cities [42102-199]
+2019-11-20 17:48:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CITIES" not found; SQL statement:
+SELECT * FROM cities [42102-199]
+2019-11-20 17:50:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CITIES" not found; SQL statement:
+SELECT * FROM CITIES [42102-199]
+2019-11-20 17:52:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CITIES" not found; SQL statement:
+SELECT * FROM PUBLIC.CITIES [42102-199]
