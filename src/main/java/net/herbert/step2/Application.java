@@ -38,7 +38,7 @@ public class Application {
             Class.forName("org.h2.Driver");
             try(var connection = DriverManager.getConnection("jdbc:h2:./cities", "test", "");
                 var statement = connection.createStatement();
-                var resultSet = statement.executeQuery("SELECT * FROM PUBLIC.CITIES")) {
+                var resultSet = statement.executeQuery("SELECT * FROM cities")) {
                 while (resultSet.next()) {
                     var city = new City();
                     city.setName(resultSet.getString("name"));
