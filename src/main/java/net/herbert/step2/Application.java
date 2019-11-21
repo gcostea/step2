@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 
 public class Application {
 
-    public static void main(String... args) throws IOException {
+    public static void main(String... args) throws IOException, ClassNotFoundException {
+        Class.forName("org.h2.Driver");
         var server = HttpServer.create(new InetSocketAddress(8080), 0);
         var context = server.createContext("/cities");
         context.setHandler(Application::handleRequest);
@@ -33,10 +34,9 @@ public class Application {
 
     private static List<City> getCitiesFromDatabase() {
         var cities = new ArrayList<City>();
-        try (var connection = DriverManager.getConnection("jdbc:h2:./cities", "test", "");
+        try (var connection = DriverManager.getConnection("jdbc:h2:file:" + DB_LOCATION, "test", "");
              var statement = connection.createStatement();
              var resultSet = statement.executeQuery("SELECT * FROM cities")) {
-            Class.forName("org.h2.Driver");
             while (resultSet.next()) {
                 var city = new City();
                 city.setName(resultSet.getString("name"));
@@ -45,10 +45,11 @@ public class Application {
                 city.setGeonameid(resultSet.getInt("geonameid"));
                 cities.add(city);
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return cities;
     }
 
+    private static final String DB_LOCATION = "/home/costea/Work/Arezzosky/TechHerbert2019/Data/cities";
 }
